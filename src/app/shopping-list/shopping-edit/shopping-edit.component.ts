@@ -7,8 +7,10 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
+  // #nameInput = local ref from html
   @ViewChild('nameInput',{static:false})nameInputRef : ElementRef;
   @ViewChild('amountInput',{static:false}) amountInputRef: ElementRef;
+  //output passing object with parameters needed in onAddItem to be passed to shopping-list (parent)
   @Output() ingredientAdded = new EventEmitter<{name:string, amount:number}>();
 
   constructor() { }
