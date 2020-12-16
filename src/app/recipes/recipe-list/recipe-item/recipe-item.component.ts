@@ -7,7 +7,10 @@ import { Recipe } from '../../recipe.model';
   styleUrls: ['./recipe-item.component.css']
 })
 export class RecipeItemComponent implements OnInit {
+  //[recipe] property is being bound to 'recipe' below  with input
+  // input is used to connect the information coming from recipe-list(parent) to update child component
   @Input() recipe: Recipe;
+    // @ output is sending recipe item selected in html up a folder to recipe list
   @Output() recipeSelected = new EventEmitter<void>();
 
   constructor() { }
