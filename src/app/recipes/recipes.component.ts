@@ -9,14 +9,18 @@ import { RecipeService } from './recipe.service';
   providers: [ RecipeService]
 })
 export class RecipesComponent implements OnInit {
-
-  //onSelected(item html) >recipeSelected (item.ts > list.html)> onRecipeSelected() (list.html > list.ts)>
-  //  >recipeWasSelected (list.ts > recipe.html) > selectedRecipe(recipe.html>recipe.ts) > [recipe]=selectedRecipe(recipe.html > detail.ts) )
   selectedRecipe: Recipe;
 
-  constructor() { }
+  constructor(private recipeService: RecipeService ) { }
+  // injects recipe and now all components with this injection, use the same instance of this service
 
   ngOnInit(): void {
+    this.recipeService.recipeSelected
+    .subscribe(// will listen and update on this
+      (recipe: Recipe) =>{
+        this.selectedRecipe = recipe;// the selected recipe is = recipe from the event
+      }
+    )
   }
 
 }
