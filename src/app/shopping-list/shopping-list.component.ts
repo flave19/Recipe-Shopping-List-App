@@ -10,14 +10,14 @@ import { ShoppingListService } from './shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
-  private igChangedSub: Subscription
+  private subscription: Subscription
 
   constructor(private slService: ShoppingListService) {}
   //is injecting the access to this service
 
   ngOnInit() {
     this.ingredients = this.slService.getIngredients();
-    this.igChangedSub = this.slService.ingredientsChanged
+    this.subscription = this.slService.ingredientsChanged
       .subscribe(
         (ingredients: Ingredient[]) => {
           this.ingredients = ingredients;
@@ -27,6 +27,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.igChangedSub.unsubscribe()
+    this.subscription.unsubscribe()
   }
 }
